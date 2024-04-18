@@ -4,11 +4,14 @@
     display: flex;
     flex-direction: row;
     gap: 0;
-    box-shadow: 0 0 5px 5px rgb(202, 202, 202);
+    justify-content: space-between;
+
 }
 .navItem {
     border-right: 1px solid lightgrey;
     height: 100%;
+    text-decoration: none;
+    color: inherit;
     width: 6rem;
     display: flex;
     align-items: center;
@@ -16,4 +19,10 @@
 }
 .navItem:hover {
     background-color: lightgrey;
+}
+.title {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    padding: 2rem;
 }

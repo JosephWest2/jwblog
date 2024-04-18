@@ -1,23 +1,19 @@
-import styles from "./page.module.css";
-import NavBar from "./navbar";
-import { readdir, readFile} from "node:fs/promises";
+import { prisma } from "@/lib/prismaSingleton";
 import Markdown from "react-markdown";
 
 export default async function Home() {
 
-    const articles = [] as string[];
-    const articleDir = await readdir("articles")
-    for await (const articleName of articleDir) {
-        const fileString = await readFile(`articles/${articleName}`, {encoding: "utf-8"});
-        articles.push(fileString);
-    }
+    const articles = await prisma.article.findMany();
 
     return (<>
         <main>
-            <h1>Joey's Blog</h1>
-            {articles.map(fileString => {
-                    return <Markdown className="markdownContainer">{fileString}</Markdown>
+            {articles.map((article : any) => {
+                console.log(article.file);
+                return <div className="articleContainer">
+                    <p>{article.title}, {JSON.stringify(article.date)}</p>
+                    <Markdown className="markdownContainer">{article.file}</Markdown>
+                </div>
             })}
-    </main >
+        </main >
     </>);
 }
