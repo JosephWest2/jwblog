@@ -6,14 +6,11 @@ export default async function Home() {
     const articles = await prisma.article.findMany();
 
     return (<>
-        <main>
-            {articles.map((article : any) => {
-                console.log(article.file);
-                return <div className="articleContainer">
-                    <p>{article.title}, {JSON.stringify(article.date)}</p>
-                    <Markdown className="markdownContainer">{article.file}</Markdown>
-                </div>
-            })}
-        </main >
+        {articles.map((article) => {
+            return <div className="articleContainer">
+                <p>{article.title}, {article.date.toLocaleDateString()}</p>
+                <Markdown className="markdownContainer">{article.article}</Markdown>
+            </div>
+        })}
     </>);
 }

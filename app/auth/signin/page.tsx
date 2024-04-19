@@ -20,6 +20,7 @@ export default function SignIn() {
 
     return (
         <div>
+            <h2>Admin signin</h2>
             <input type="password" onChange={e => setPassword(e.target.value)} value={password}></input>
             <button onClick={SignIn}>Sign In</button>
         </div>
