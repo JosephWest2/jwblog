@@ -1,19 +1,23 @@
 import { prisma } from "@/lib/prismaSingleton";
 import Link from "next/link";
+import Markdown from "react-markdown";
+import styles from "./page.module.css"
 
 export default async function Home() {
 
     const articles = await prisma.article.findMany();
+    
 
-    return (<>
+    return (<div className={styles.articlesContainer}>
         {articles.map((article) => {
-            return <div>
-                <h2>{article.title}</h2>
-                <p>{article.date.toLocaleString()}</p>
-                {article.imageUrl && <img src={article.imageUrl}></img>}
-                <p>{article.description}</p>
-                <Link href={"/articles/" + article.id}>View Post</Link>
+            return <div className={styles.article}>
+                <h2 className={styles.header}>{article.title}</h2>
+                <p className={styles.date}>{article.date.toLocaleDateString()}</p>
+                {article.imageUrl && <img className={styles.image} src={article.imageUrl}></img>}
+                {article.description && <p className={styles.description}>{article.description}</p>}
+                <Link className={styles.link} href={"/articles/" + article.id}>View Post</Link>
+                <Markdown></Markdown>
             </div>
         })}
-    </>);
+    </div>);
 }

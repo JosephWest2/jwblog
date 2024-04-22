@@ -1,0 +1,41 @@
+.articlesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-rows: auto;
+    gap: 1rem;
+    background-color: transparent;
+} 
+.article {
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "header date"
+        "image image"
+        "description description"
+        "link link";
+    border-radius: 0.5rem;
+    gap: 1rem;
+}
+.link {
+    grid-area: link;
+}
+.description {
+    grid-area: description;
+}
+.header {
+    grid-area: header;
+}
+.date {
+    grid-area: date;
+    text-align: right;
+}
+.image {
+    grid-area: image;
+}
+
+@media screen and (max-width: 650px) {
+    .articlesContainer {
+        grid-template-columns: 1fr;
+    }
+}

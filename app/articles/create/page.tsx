@@ -7,14 +7,13 @@ export default function page() {
 
     const [file, setFile] = useState<any>();
     const [title, setTitle] = useState<string>();
-    const [imageUrl, setImageUrl] = useState<string>();
-    const [description, setDescription] = useState<string>();
+    const [imageUrl, setImageUrl] = useState<string | undefined>();
+    const [description, setDescription] = useState<string | undefined>();
 
 
     async function Submit() {
-        const fileString = await file.text();
         if (file && title) {
-            Create(title, fileString)
+            Create(title, await file.text(), description, imageUrl)
         } else {
             alert("please fill out all fields");
         }

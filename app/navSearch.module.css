@@ -1,0 +1,12 @@
+.input, .select{
+    height: 2.5rem;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+.button {
+    height: 2.5rem;
+    border: 1px solid grey;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import { signin } from "@/app/actions/auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function SignIn() {
@@ -16,7 +16,6 @@ export default function SignIn() {
                     document.cookie = `auth=${response.jwt}; expires=${new Date(Date.now() + 1000 * 60 * 30)}; SameSite=strict;`
                     alert("signed in successfully")
                     router.push("/")
-                    
                 }
             })
         }
