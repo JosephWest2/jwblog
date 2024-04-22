@@ -1,12 +1,31 @@
-.input, .select{
+.input,
+.select {
     height: 2.5rem;
     border: 1px solid grey;
-    border-radius: 0.5rem;
     padding: 0.5rem;
 }
+
+.input {
+    border-radius: none;
+}
+.input:focus {
+    border: 2px solid black;
+    outline: none;
+}
+
+
+.select {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+}
+
 .button {
     height: 2.5rem;
     border: 1px solid grey;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    border-left: none;
+}
+.button:hover {
+    cursor: pointer;
 }

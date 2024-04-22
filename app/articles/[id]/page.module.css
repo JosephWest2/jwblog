@@ -25,8 +25,14 @@
 }
 
 .articleContainer {
+    position: relative;
     padding: 2rem;
     border-radius: 0.5rem;
+}
+.date {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
 
 .articleContainer>p:first-child {
@@ -38,11 +44,12 @@
     .markdownContainer>ol {
         padding-left: 1.5rem;
     }
+
     .articleContainer {
         padding: 1rem;
         border-radius: 0;
         border-right: 0;
         border-left: 0;
     }
- 
+
 }

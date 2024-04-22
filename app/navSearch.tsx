@@ -12,10 +12,7 @@ export default function NavSearch() {
     const [sortBy, setSortBy] = useState<string|undefined>();
 
     function Submit() {
-        if (!query) {
-            return;
-        }
-        router.push("/?query=" + query);
+        router.push(`/?query=${query || ""}&sortBy=${sortBy || ""}`);
     }
 
     return <>
@@ -25,7 +22,7 @@ export default function NavSearch() {
             <option value="title">Title</option>
         </select>
         <input className={styles.input} type="text" onChange={e => setQuery(e.target.value)}></input>
-        <button className={styles.input} onClick={Submit}>Search</button>
+        <button className={styles.input + " " + styles.button} onClick={Submit}>Search</button>
     </>
 }
 

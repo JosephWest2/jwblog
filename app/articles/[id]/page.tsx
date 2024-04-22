@@ -17,6 +17,7 @@ export default async function Article({ params }: { params: { id: string} }) {
 
     return (
     <div className={styles.articleContainer}>
+        <p className={styles.date}>{article.date.toLocaleDateString()}</p>
         <Markdown className={styles.markdownContainer}>{article.article}</Markdown>
     </div>
     )
