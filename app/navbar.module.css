@@ -2,10 +2,7 @@
     width: 100%;
     height: 5rem;
     display: flex;
-    flex-direction: row;
     gap: 0;
-    justify-content: space-between;
-
 }
 .navItem {
     border-right: 1px solid lightgrey;

@@ -11,7 +11,8 @@ export default function SignIn() {
         if (password !== "") {
             signin(password).then(response => {
                 if (response.success) {
-                    window.sessionStorage.setItem("jwblogjwt", response.jwt || "")
+                    document.cookie = `auth=${response.jwt}; expires=${new Date(Date.now() + 1000 * 60 * 30)}; SameSite=strict;`
+                    alert("signed in successfully")
                 }
             })
         }
@@ -19,11 +20,13 @@ export default function SignIn() {
 
 
     return (
-        <div>
-            <h2>Admin signin</h2>
-            <input type="password" onChange={e => setPassword(e.target.value)} value={password}></input>
-            <button onClick={SignIn}>Sign In</button>
-        </div>
+        <>
+            <div>
+                <h2>Admin signin</h2>
+                <input type="password" onChange={e => setPassword(e.target.value)} value={password}></input>
+                <button onClick={SignIn}>Sign In</button>
+            </div>
+        </>
     )
 
 }

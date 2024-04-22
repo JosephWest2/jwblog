@@ -21,6 +21,22 @@ export async function verifyJWT(jwt: string) {
     return false;
 }
 
+export async function ParseJWT(jwt: string) {
+
+	if (!verifyJWT(jwt)) {
+		return null
+	}
+	
+	const output = {} as {header: any, payload: any, signature: string }
+	const parts = jwt.split(".");
+
+	output.header = JSON.parse(atob(parts[0]));
+	output.payload = JSON.parse(atob(parts[1]));
+	output.signature = parts[2];
+
+	return output;
+}
+
 export async function signin(password: string) {
     if (!masterHash) {
         return { success: false, jwt: null };
