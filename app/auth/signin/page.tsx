@@ -1,11 +1,13 @@
 "use client"
 
 import { signin } from "@/app/actions/auth";
+import { useRouter } from "next/router";
 import { useState } from "react"
 
 export default function SignIn() {
 
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     function SignIn() {
         if (password !== "") {
@@ -13,6 +15,8 @@ export default function SignIn() {
                 if (response.success) {
                     document.cookie = `auth=${response.jwt}; expires=${new Date(Date.now() + 1000 * 60 * 30)}; SameSite=strict;`
                     alert("signed in successfully")
+                    router.push("/")
+                    
                 }
             })
         }

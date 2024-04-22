@@ -28,8 +28,14 @@ export default function page() {
     }
 
     return (<div>
+        <h4>File</h4>
         <input type="file" onChange={SetFile}></input>
+        <h4>Title</h4>
         <input type="text" onChange={e => setTitle(e.target.value)}></input>
+        <h4>ImageUrl</h4>
+        <input type="text" onChange={e => setImageUrl(e.target.value)}></input>
+        <h4>Description</h4>
+        <textarea onChange={e => setDescription(e.target.value)}></textarea>
         <input type="submit" onClick={Submit}></input>
     </div>)
 }

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prismaSingleton";
-import Markdown from "react-markdown";
+import Link from "next/link";
 
 export default async function Home() {
 
@@ -7,9 +7,12 @@ export default async function Home() {
 
     return (<>
         {articles.map((article) => {
-            return <div className="articleContainer">
-                <p>{article.title}, {article.date.toLocaleDateString()}</p>
-                <Markdown className="markdownContainer">{article.article}</Markdown>
+            return <div>
+                <h2>{article.title}</h2>
+                <p>{article.date.toLocaleString()}</p>
+                {article.imageUrl && <img src={article.imageUrl}></img>}
+                <p>{article.description}</p>
+                <Link href={"/articles/" + article.id}>View Post</Link>
             </div>
         })}
     </>);
