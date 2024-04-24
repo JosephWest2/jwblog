@@ -6,7 +6,6 @@ import { Delete } from "@/app/actions/delete";
 export default function Page({ params }: { params: { id: string } }) {
 
     const router = useRouter();
-    console.log(params.id)
 
     if (!params.id) {
         return <h2>article not found</h2>
@@ -25,6 +24,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
     return <div className="box col">
         <h2>Delete Article?</h2>
-        <button className="btn" onClick={_delete}>Delete</button>
+        <button className="btn" style={{width: "100%"}} onClick={_delete}>Delete</button>
     </div>
 }

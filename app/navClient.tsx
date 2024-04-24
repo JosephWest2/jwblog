@@ -19,9 +19,11 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
         return undefined;
     }
 
-    window.addEventListener('resize', () => {
-        setWidth(window.innerWidth);
-    })
+    if (typeof window !== "undefined") {
+        window.addEventListener('resize', () => {
+            setWidth(window.innerWidth);
+        })
+    }
 
     if (width && width < 650) {
         return <div className={styles.navBar} data-visible={visible}>

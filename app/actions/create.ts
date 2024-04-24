@@ -1,10 +1,11 @@
 "use server";
 
 import { prisma } from "@/lib/prismaSingleton";
+import { revalidatePath } from "next/cache";
 
 export async function Create(title: string, file: any, description: string | undefined, imageUrl: string | undefined) {
 
-    await prisma.article.create({
+    const result = await prisma.article.create({
         data: {
             title: title,
             article: file,
@@ -13,5 +14,12 @@ export async function Create(title: string, file: any, description: string | und
             imageUrl: imageUrl,
         }
     })
+
+    if (result) {
+        revalidatePath("/", "layout");
+        revalidatePath("/", "page");
+        return true;
+    }
+    return false;
 
 }

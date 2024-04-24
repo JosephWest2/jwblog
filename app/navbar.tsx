@@ -7,7 +7,6 @@ export default async function NavBar() {
     const jwtCookie = cookies().get("auth");
     let authenticated = false;
     if (jwtCookie) {
-        console.log(jwtCookie.value);
         const jwt = await ParseJWT(jwtCookie.value);
         if (jwt && jwt.payload.admin === true) {
             authenticated = true;

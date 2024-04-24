@@ -1,6 +1,7 @@
 "use client";
 
 import { Create } from "@/app/actions/create";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function page() {
@@ -10,10 +11,17 @@ export default function page() {
     const [imageUrl, setImageUrl] = useState<string | undefined>();
     const [description, setDescription] = useState<string | undefined>();
 
+    const router = useRouter();
+
     async function Submit() {
         if (file && title) {
-            Create(title, file, description, imageUrl)
-            alert("article created");
+            const result = await Create(title, file, description, imageUrl)
+            if (result) {
+                alert("article created");
+                router.push("/")
+            } else {
+                alert("failed to create article")
+            }
         } else {
             alert("please fill out all fields");
         }

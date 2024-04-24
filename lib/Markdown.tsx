@@ -22,7 +22,6 @@ function ProcessInline(lines: string[]) {
 export default function Markdown({file_utf8}: {file_utf8: string}) {
 	
 	const lines = file_utf8.split("\n");
-	console.log(lines);
 
 	const elements = [] as JSX.Element[];
 	let i = 0;
