@@ -4,7 +4,6 @@ import styles from "./page.module.css"
 
 export default async function Article({ params }: { params: { id: string} }) {
 
-
     const article = await prisma.article.findUnique({
         where: {
             id: Number(params.id)

@@ -14,6 +14,7 @@ export default function page() {
     async function Submit() {
         if (file && title) {
             Create(title, await file.text(), description, imageUrl)
+            alert("article created");
         } else {
             alert("please fill out all fields");
         }
@@ -26,15 +27,15 @@ export default function page() {
         setFile(e.target.files[0])
     }
 
-    return (<div>
+    return (<div className="box col" style={{gap: "0.5rem", width: "30rem"}}>
         <h4>File</h4>
         <input type="file" onChange={SetFile}></input>
         <h4>Title</h4>
-        <input type="text" onChange={e => setTitle(e.target.value)}></input>
+        <input className="input" type="text" onChange={e => setTitle(e.target.value)}></input>
         <h4>ImageUrl</h4>
-        <input type="text" onChange={e => setImageUrl(e.target.value)}></input>
+        <input className="input" type="text" onChange={e => setImageUrl(e.target.value)}></input>
         <h4>Description</h4>
-        <textarea onChange={e => setDescription(e.target.value)}></textarea>
-        <input type="submit" onClick={Submit}></input>
+        <textarea className="input" style={{minHeight: "5rem"}} onChange={e => setDescription(e.target.value)}></textarea>
+        <input className="input" type="submit" onClick={Submit} value="Submit"></input>
     </div>)
 }

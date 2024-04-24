@@ -25,10 +25,13 @@ export default async function Home({ searchParams }: { searchParams: { query: st
     } else {
         articles = await prisma.article.findMany();
     }
-    if (articles.length > 1 && searchParams.sortBy === "recent") {
-        articles.sort((a,b) => {return a.date.getUTCMilliseconds() - b.date.getUTCMilliseconds()});
+
+    if (articles.length > 1 && searchParams.sortBy === "oldest") {
+        articles.sort((a,b) => {return b.date.getUTCMilliseconds() - a.date.getUTCMilliseconds()});
     } else if (articles.length > 1 && searchParams.sortBy === "title") {
         articles.sort((a,b) => {return a.title.localeCompare(b.title)})
+    } else {
+        articles.sort((a,b) => {return a.date.getUTCMilliseconds() - b.date.getUTCMilliseconds()});
     }
 
     if (!articles) {
@@ -40,12 +43,12 @@ export default async function Home({ searchParams }: { searchParams: { query: st
 
     return (<div className={styles.articlesContainer}>
         {articles.map((article) => {
-            return <div className={styles.article}>
+            return <div key={article.id} className={styles.article}>
                 <h2 className={styles.header}>{article.title}</h2>
                 <p className={styles.date}>{article.date.toLocaleDateString()}</p>
                 {article.imageUrl && <img className={styles.image} src={article.imageUrl} alt="article image"></img>}
                 {article.description && <p className={styles.description}>{article.description}</p>}
-                <Link className={styles.link} href={"/articles/" + article.id}>View Post</Link>
+                <Link className={styles.link + " btn"} href={"/articles/" + article.id}>View Post</Link>
             </div>
         })}
     </div>);

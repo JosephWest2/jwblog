@@ -19,6 +19,7 @@ export default function NavSearch() {
         <select className={styles.select} onChange={e => setSortBy(e.target.value)}>
             <option value="">Sort By</option>
             <option value="recent">Recent</option>
+            <option value="oldest">Oldest</option>
             <option value="title">Title</option>
         </select>
         <input className={styles.input} type="text" onChange={e => setQuery(e.target.value)}></input>
