@@ -14,7 +14,10 @@ export default function SignIn() {
             signin(password).then(response => {
                 if (response.success) {
                     document.cookie = `auth=${response.jwt}; expires=${new Date(Date.now() + 1000 * 60 * 30)}; SameSite=strict;`
+                    alert("signin successful")
                     router.push("/")
+                } else {
+                    alert("signin failed")
                 }
             })
         }

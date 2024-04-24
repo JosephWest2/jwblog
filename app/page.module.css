@@ -23,6 +23,7 @@
 }
 .link {
     grid-area: link;
+    align-self: flex-end;
 }
 .description {
     grid-area: description;

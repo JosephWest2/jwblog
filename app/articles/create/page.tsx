@@ -10,24 +10,23 @@ export default function page() {
     const [imageUrl, setImageUrl] = useState<string | undefined>();
     const [description, setDescription] = useState<string | undefined>();
 
-
     async function Submit() {
         if (file && title) {
-            Create(title, await file.text(), description, imageUrl)
+            Create(title, file, description, imageUrl)
             alert("article created");
         } else {
             alert("please fill out all fields");
         }
     }
 
-    function SetFile(e: React.ChangeEvent<HTMLInputElement>) {
+    async function SetFile(e: React.ChangeEvent<HTMLInputElement>) {
         if (!e.target.files || e.target.files.length < 1) {
             return;
         }
-        setFile(e.target.files[0])
+        setFile(await e.target.files[0].text())
     }
 
-    return (<div className="box col" style={{gap: "0.5rem", width: "30rem"}}>
+    return (<div className="box col" style={{gap: "0.5rem", width: "30rem", maxWidth: "100svw"}}>
         <h4>File</h4>
         <input type="file" onChange={SetFile}></input>
         <h4>Title</h4>
