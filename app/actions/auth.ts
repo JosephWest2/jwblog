@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-
 const bcrypt = require('bcrypt');
 
 const saltRounds = 12;
@@ -64,8 +62,6 @@ export async function signin(password: string) {
 
         hmac.update(output);
         output += "." + hmac.digest("base64");
-        revalidatePath("/", 'layout')
-        revalidatePath("/", 'page')
         return { success: true, jwt: output };
     }
     return { success: false, jwt: null }

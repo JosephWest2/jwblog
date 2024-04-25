@@ -1,11 +1,20 @@
 .articlesContainer {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: row;
     gap: 1rem;
     background-color: transparent;
+    width: 100%;
+    justify-content:center;
     max-width: 100svw;
+    flex-wrap: wrap;
 } 
+.articleColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: transparent;
+    height: fit-content;
+}
 .article {
     display: grid;
     padding: 1rem;

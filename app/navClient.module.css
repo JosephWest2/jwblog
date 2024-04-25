@@ -79,10 +79,7 @@
         justify-content: left;
         height: 4rem;
         width: 100%;
-        border-top: 1px solid grey;
-    }
-    .navArea:last-child {
-        border-bottom: 1px solid grey;
+        background-color: white;
     }
     .center {
         padding: 1rem;

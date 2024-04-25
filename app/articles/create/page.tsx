@@ -34,7 +34,7 @@ export default function page() {
         setFile(await e.target.files[0].text())
     }
 
-    return (<div className="box col" style={{gap: "0.5rem", width: "30rem", maxWidth: "100svw"}}>
+    return (<div className="box col" style={{ gap: "0.5rem", width: "30rem", maxWidth: "100svw" }}>
         <h4>File</h4>
         <input type="file" onChange={SetFile}></input>
         <h4>Title</h4>
@@ -42,7 +42,7 @@ export default function page() {
         <h4>ImageUrl</h4>
         <input className="input" type="text" onChange={e => setImageUrl(e.target.value)}></input>
         <h4>Description</h4>
-        <textarea className="input" style={{minHeight: "5rem"}} onChange={e => setDescription(e.target.value)}></textarea>
-        <input className="input" type="submit" onClick={Submit} value="Submit"></input>
+        <textarea className="input" style={{ minHeight: "5rem" }} onChange={e => setDescription(e.target.value)}></textarea>
+        <input className="btn" style={{ width: "100%" }} type="submit" onClick={Submit} value="Submit"></input>
     </div>)
 }

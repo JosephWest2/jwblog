@@ -2,7 +2,7 @@
 .select {
     height: 2.5rem;
     background-color: white;
-    border: 1px solid grey;
+    border: 2px inset whitesmoke;
     padding: 0.5rem;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .input:focus {
-    outline: 1px solid black;
+    outline: 2px solid black;
 }
 
 .select {
@@ -27,5 +27,8 @@
 
 .button:hover {
     cursor: pointer;
-    background-color: whitesmoke;
+    background-color: lightgrey;
+}
+.button:focus {
+    outline: none
 }

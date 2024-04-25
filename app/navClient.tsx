@@ -4,13 +4,18 @@ import styles from "./navClient.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import NavSearch from "./navSearch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import hamburger from "./hamburgerIcon.png"
 
 export default function NavClient({ authenticated }: { authenticated: boolean }) {
 
     const [visible, setVisible] = useState(false);
     const [width, setWidth] = useState(widthInit())
+    const [_authenticated, set_authenticated] = useState(authenticated);
+
+    useEffect(() => {
+       set_authenticated(authenticated); 
+    }, [authenticated])
 
     function widthInit() {
         if (typeof window !== "undefined") {
@@ -34,13 +39,13 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
                 <Link className={styles.navItem} href="/">
                     Home
                 </Link>
-                {authenticated && <>
+                {_authenticated && <>
                     <Link href="/articles/create" className={styles.navItem}>
                         Create
                     </Link>
                 </>}
                 <Link href="/auth/signin" className={styles.navItem + " " + styles.title}>
-                    Sign in
+                    Admin
                 </Link>
             </div>
             <div className={styles.navArea + " " + styles.center}>
@@ -58,7 +63,7 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
             <Link className={styles.navItem} href="/">
                 Home
             </Link>
-            {authenticated && <>
+            {_authenticated && <>
                 <Link href="/articles/create" className={styles.navItem}>
                     Create
                 </Link>

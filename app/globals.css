@@ -48,21 +48,24 @@ div {
     text-decoration: none;
     color: inherit;
     padding: 0.5rem;
-    border: 1px solid grey;
     border-radius: 0.5rem;
+    border: none;
     width: fit-content;
     height: fit-content;
+    background-color: rgb(230,230,230);
 }
 
 .btn:hover {
-    background-color: lightgrey;
+    background-color: whitesmoke;
     cursor: pointer;
 }
 
 .input {
     padding: 0.5rem;
-    border: 1px solid grey;
-    border-radius: 0.5rem;
+    border: 2px inset whitesmoke;
+}
+.input:focus {
+    outline: 2px solid black;
 }
 
 @media screen and (max-width: 650px) {
