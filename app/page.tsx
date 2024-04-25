@@ -44,11 +44,11 @@ export default async function Home({ searchParams }: { searchParams: { query: st
     return (<div className={styles.articlesContainer}>
         {articles.map((article) => {
             return <div key={article.id} className={styles.article}>
-                <h2 className={styles.header}>{article.title}</h2>
+                <h1 className={styles.header}>{article.title}</h1>
                 <p className={styles.date}>{article.date.toLocaleDateString()}</p>
                 {article.imageUrl && <img className={styles.image} src={article.imageUrl} alt="article image"></img>}
                 {article.description && <p className={styles.description}>{article.description}</p>}
-                <Link className={styles.link + " btn"} href={"/articles/" + article.id}>View Post</Link>
+                <Link className={styles.link} href={"/articles/" + article.id}>View Post</Link>
             </div>
         })}
     </div>);

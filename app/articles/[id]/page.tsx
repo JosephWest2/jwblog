@@ -28,7 +28,7 @@ export default async function Article({ params }: { params: { id: string } }) {
 
     return (
         <div className={styles.articleContainer}>
-            {authenticated && <div className="row" style={{float: "right", paddingTop: "1.2rem"}}>
+            {authenticated && <div className={styles.updateButtons + " row"} >
                 <Link href={`/articles/${params.id}/update`} className="btn">Update</Link>
                 <Link href={`/articles/${params.id}/delete`} className="btn">Delete</Link>
             </div>}

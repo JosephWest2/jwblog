@@ -1,6 +1,7 @@
 .input,
 .select {
     height: 2.5rem;
+    background-color: white;
     border: 1px solid grey;
     padding: 0.5rem;
 }
@@ -10,26 +11,21 @@
 }
 
 .input:focus {
-    border: 2px solid black;
-    outline: none;
+    outline: 1px solid black;
 }
 
 .select {
-    border-radius: 0.5rem 0 0 0.5rem;
-    border-right: none;
+    background-color: white;
 }
-.select:invalid {
-    color: grey
+.select:hover {
+    text-decoration: underline;
 }
 
 .button {
-    height: 2.5rem;
-    border: 1px solid grey;
-    padding: 0.5rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    border-left: none;
+    background-color: white;
 }
 
 .button:hover {
     cursor: pointer;
+    background-color: whitesmoke;
 }
