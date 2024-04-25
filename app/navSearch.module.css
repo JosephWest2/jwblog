@@ -17,9 +17,6 @@
 .select {
     background-color: white;
 }
-.select:hover {
-    text-decoration: underline;
-}
 
 .button {
     background-color: white;
