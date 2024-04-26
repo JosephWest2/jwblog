@@ -9,8 +9,8 @@ type article = {
     id: number,
     title: string,
     date: Date,
-    imageUrl: string,
-    description: string
+    imageUrl: string | null,
+    description: string | null
 }
 
 export default function ArticleThumbnails({ articles }: { articles: article[] | undefined }) {
