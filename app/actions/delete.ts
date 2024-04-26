@@ -11,8 +11,8 @@ export async function Delete(id: number) {
     })
 
     if (result) {
-        revalidatePath("/", "layout");
         revalidatePath("/", "page");
+        revalidatePath("/acticles/[id]", "page");
         return true
     }
     return false

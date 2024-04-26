@@ -16,8 +16,8 @@ export async function Create(title: string, file: any, description: string | und
     })
 
     if (result) {
-        revalidatePath("/", "layout");
         revalidatePath("/", "page");
+        revalidatePath("/acticles/[id]", "page");
         return true;
     }
     return false;

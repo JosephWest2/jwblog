@@ -9,14 +9,6 @@ import hamburger from "./hamburgerIcon.png"
 
 export default function NavClient({ authenticated }: { authenticated: boolean }) {
 
-    const [visible, setVisible] = useState(false);
-    const [width, setWidth] = useState(widthInit())
-    const [_authenticated, set_authenticated] = useState(authenticated);
-
-    useEffect(() => {
-       set_authenticated(authenticated); 
-    }, [authenticated])
-
     function widthInit() {
         if (typeof window !== "undefined") {
             return window.innerWidth
@@ -24,11 +16,18 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
         return undefined;
     }
 
-    if (typeof window !== "undefined") {
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth);
-        })
-    }
+    const [visible, setVisible] = useState(false);
+    const [width, setWidth] = useState(widthInit)
+
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+            window.addEventListener('resize', () => {
+                setWidth(window.innerWidth);
+            })
+        }
+
+    }, [])
 
     if (width && width < 650) {
         return <div className={styles.navBar} data-visible={visible}>
@@ -39,7 +38,7 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
                 <Link className={styles.navItem} href="/">
                     Home
                 </Link>
-                {_authenticated && <>
+                {authenticated && <>
                     <Link href="/articles/create" className={styles.navItem}>
                         Create
                     </Link>
@@ -63,7 +62,7 @@ export default function NavClient({ authenticated }: { authenticated: boolean })
             <Link className={styles.navItem} href="/">
                 Home
             </Link>
-            {_authenticated && <>
+            {authenticated && <>
                 <Link href="/articles/create" className={styles.navItem}>
                     Create
                 </Link>

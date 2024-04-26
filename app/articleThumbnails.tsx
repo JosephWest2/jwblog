@@ -15,17 +15,30 @@ type article = {
 
 export default function ArticleThumbnails({ articles }: { articles: article[] | undefined }) {
 
-    const [width, setWidth] = useState(widthInit());
+    function WidthInit() {
+        if (typeof window !== "undefined") {
+            return window.innerWidth
+        }
+        return 1000
+    }
+
+    const [width, setWidth] = useState(WidthInit);
     const [col1Contents, setCol1Contents] = useState<JSX.Element[]>([])
     const [col2Contents, setCol2Contents] = useState<JSX.Element[]>([])
     const [articleStack, setArticleStack] = useState<JSX.Element[]>([])
+    const [prevArticles, setPrevArticles] = useState(articles);
     const col1 = useRef<HTMLDivElement>(null);
     const col2 = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
 
-        if (!articles) { return }
+        if (typeof window !== "undefined") {
+            window.addEventListener('resize', () => {
+                setWidth(window.innerWidth)
+            })
+        }
 
+        if (!articles) { return }
         const elements = articles.map(article => {
             return <div key={article.id} className={styles.article}>
                 <h1 className={styles.header}>{article.title}</h1>
@@ -39,9 +52,10 @@ export default function ArticleThumbnails({ articles }: { articles: article[] | 
         setCol1Contents([]);
         setCol2Contents([]);
 
-    }, [articles])
+    }, [])
 
     useEffect(() => {
+
 
         if (articleStack.length === 0 || !col1.current || !col2.current) { return; }
         const stack = [...articleStack];
@@ -63,17 +77,22 @@ export default function ArticleThumbnails({ articles }: { articles: article[] | 
 
     }, [articleStack])
 
-    function widthInit() {
-        if (typeof window !== "undefined") {
-            return window.innerWidth
-        }
-        return 1000
-    }
+    if (prevArticles !== articles && articles) {
 
-    if (typeof window !== "undefined") {
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth)
-        })
+        const elements = articles.map(article => {
+            return <div key={article.id} className={styles.article}>
+                <h1 className={styles.header}>{article.title}</h1>
+                <p className={styles.date}>{article.date.toLocaleDateString()}</p>
+                {article.imageUrl && <Image className={styles.image} src={article.imageUrl} height="300" width="300" alt="article image"></Image>}
+                {article.description && <p className={styles.description}>{article.description}</p>}
+                <Link className={styles.link} href={"/articles/" + article.id}>View Post</Link>
+            </div>
+        });
+        setPrevArticles(articles);
+        setArticleStack(elements.reverse());
+        setCol1Contents([]);
+        setCol2Contents([]);
+
     }
 
     if (!articles || articles.length === 0) {
@@ -100,7 +119,5 @@ export default function ArticleThumbnails({ articles }: { articles: article[] | 
         <div ref={col1} className={styles.articleColumn}>{col1Contents}</div>
         <div ref={col2} className={styles.articleColumn}>{col2Contents}</div>
     </div>);
-
-
 
 }

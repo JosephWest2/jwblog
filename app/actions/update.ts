@@ -18,8 +18,8 @@ export async function Update(id: number, title: string, file: string, descriptio
     })
 
     if (article) {
-        revalidatePath("/", "layout");
         revalidatePath("/", "page");
+        revalidatePath("/acticles/[id]", "page");
         return true
     }
     return false
